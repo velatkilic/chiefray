@@ -1,0 +1,14 @@
+option(CHIEFRAY_ENABLE_OMP "Enable OpenMP" OFF)
+option(CHIEFRAY_ENABLE_MPI "Enable MPI" OFF)
+option(CHIEFRAY_ENABLE_CUDA "Enable CUDA" OFF)
+option(CHIEFRAY_ENABLE_PYTHON "Enable Python bindings" OFF)
+option(CHIEFRAY_ENABLE_TESTS "Enable tests" OFF)
+
+option(CHIEFRAY_ENABLE_WARNINGS "Enable extra warnings" OFF)
+option(CHIEFRAY_ENABLE_SANITIZERS "Enable sanitizers (Debug, non-MSVC)" OFF)
+option(CHIEFRAY_ENABLE_CLANG_TIDY "Enable clang-tidy" OFF)
+option(CHIEFRAY_ENABLE_CPPCHECK "Enable cppcheck" OFF)
+
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS OFF)
