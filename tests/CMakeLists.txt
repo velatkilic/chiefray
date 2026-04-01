@@ -12,3 +12,6 @@ target_link_libraries(chiefray_tests
         chiefray
         Catch2::Catch2WithMain
 )
+
+include(Catch)
+catch_discover_tests(chiefray_tests DISCOVERY_MODE PRE_TEST)
