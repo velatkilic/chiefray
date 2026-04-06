@@ -45,8 +45,8 @@ namespace chiefray {
 
     // Intersects the ray with the surface using a Newton-Raphson method
     // Returns the local ray after intersection in local coordinates (since after intersection, refraction, etc is applied in local coordinates)
-    template <size_t MaxIterations = 10, typename SurfaceType>
-    CHIEFRAY_HD [[nodiscard]] constexpr Ray3D intersectSurface(const Ray3D& ray,const SurfaceType& surface, double err_tol = 1e-6) noexcept {
+    template <typename SurfaceType>
+    CHIEFRAY_HD [[nodiscard]] constexpr Ray3D intersectSurface(const Ray3D& ray,const SurfaceType& surface, double err_tol = 1e-6, size_t maxIterations = 10) noexcept {
         Ray3D localRay = ray.transformCoordinatesGlobalToLocal(surface);
         Vec3D& localPosition = localRay.position;
         Vec3D& localDirection = localRay.direction;
@@ -64,7 +64,7 @@ namespace chiefray {
 
         double err = 2 * err_tol;
         size_t iterations = 0;
-        while (fabs(err) > err_tol && iterations < MaxIterations) {
+        while (fabs(err) > err_tol && iterations < maxIterations) {
             localPosition.x = x1 + s * localDirection.x;
             localPosition.y = y1 + s * localDirection.y;
             localPosition.z = s * localDirection.z;
@@ -80,7 +80,7 @@ namespace chiefray {
         }
 
         // If max iterations reached, return the local ray with the status set to MaxIterationsReached
-        if (iterations == MaxIterations) {
+        if (iterations == maxIterations) {
             localRay.status = RayTracingStatus::MaxIterationsReached;
         }
 
@@ -88,8 +88,7 @@ namespace chiefray {
     }
 
     // Computes the refracted direction using a Newton-Raphson method
-    template <size_t MaxIterations = 10>
-    CHIEFRAY_HD [[nodiscard]] constexpr Vec3D refractDirection(const Vec3D& incidentDirection, const Vec3D& surfaceNormal, double n1, double n2, double err_tol = 1e-6) noexcept {
+    CHIEFRAY_HD [[nodiscard]] constexpr Vec3D refractDirection(const Vec3D& incidentDirection, const Vec3D& surfaceNormal, double n1, double n2, double err_tol = 1e-6, size_t maxIterations = 10) noexcept {
         double mu = n1 / n2;
         double squaredNorm = surfaceNormal.norm_squared();
         double a = mu * incidentDirection.dot(surfaceNormal) / squaredNorm;
@@ -101,7 +100,7 @@ namespace chiefray {
         double err = 2 * err_tol;
         size_t iterations = 0;
         double numerator = 0., denominator = 0.;
-        while (fabs(err) > err_tol && iterations < MaxIterations) {
+        while (fabs(err) > err_tol && iterations < maxIterations) {
             numerator = prevGamma * prevGamma - b;
             denominator = 2. * (a + prevGamma);
             gamma = numerator / denominator;

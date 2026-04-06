@@ -1,7 +1,6 @@
 option(CHIEFRAY_ENABLE_OMP "Enable OpenMP" OFF)
 option(CHIEFRAY_ENABLE_MPI "Enable MPI" OFF)
 option(CHIEFRAY_ENABLE_CUDA "Enable CUDA" OFF)
-option(CHIEFRAY_ENABLE_PYTHON "Enable Python bindings" OFF)
 option(CHIEFRAY_ENABLE_TESTS "Enable tests" OFF)
 
 option(CHIEFRAY_ENABLE_WARNINGS "Enable extra warnings" OFF)
