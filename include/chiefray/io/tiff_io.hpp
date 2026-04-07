@@ -11,6 +11,13 @@ namespace chiefray {
     template <typename T>
     using Image = Eigen::Matrix<T, Eigen::Dynamic, Eigen::Dynamic, Eigen::RowMajor>;
 
+    // Compression options for writing
+    enum class TiffCompression {
+        None,
+        Lzw,
+        Deflate // Often referred to as ZIP
+    };
+
     template <typename T>
     class ImageStack {
         std::vector<T> data_;
@@ -70,10 +77,12 @@ namespace chiefray {
     ImageStack<T> readTiffStack(const std::string& path);
 
     template <typename T>
-    void writeTiff(const std::string& path, const Image<T>& image);
+    void writeTiff(const std::string& path, const Image<T>& image, 
+                   TiffCompression comp = TiffCompression::None);
 
     template <typename T>
-    void writeTiffStack(const std::string& path, const ImageStack<T>& stack);
+    void writeTiffStack(const std::string& path, const ImageStack<T>& stack, 
+                        TiffCompression comp = TiffCompression::None);
 
 } // namespace chiefray
 

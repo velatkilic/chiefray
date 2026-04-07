@@ -5,6 +5,7 @@ target_sources(chiefray_tests
         test_vec3d.cpp
         test_mat3d.cpp
         test_surfaces.cpp
+        test_tiff_io.cpp
 )
 
 target_link_libraries(chiefray_tests
