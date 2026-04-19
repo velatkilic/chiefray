@@ -1,5 +1,4 @@
 find_package(Eigen3 CONFIG REQUIRED)
-find_package(TIFF REQUIRED)
 
 if(CHIEFRAY_ENABLE_OMP)
     find_package(OpenMP REQUIRED)

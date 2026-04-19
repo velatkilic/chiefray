@@ -1,9 +1,9 @@
 #ifndef CHIEFRAY_RAY3D_HPP
 #define CHIEFRAY_RAY3D_HPP
 
-#include "vec3d.hpp"
-#include "surfaces.hpp"
-#include "mat3d.hpp"
+#include "chiefray/core/vec3d.hpp"
+#include "chiefray/core/mat3d.hpp"
+#include "chiefray/raytracing/surfaces.hpp"
 
 namespace chiefray {
     // Status of the ray tracing operation
