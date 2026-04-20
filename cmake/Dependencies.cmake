@@ -18,3 +18,11 @@ endif()
 if(CHIEFRAY_ENABLE_TESTS)
     find_package(Catch2 3 CONFIG REQUIRED)
 endif()
+
+if(CHIEFRAY_ENABLE_PYTHON)
+    # Try to import all Python components potentially needed by nanobind
+    find_package(Python 3.9
+    REQUIRED COMPONENTS Interpreter Development.Module
+    OPTIONAL_COMPONENTS Development.SABIModule)
+    find_package(nanobind CONFIG REQUIRED)
+endif()

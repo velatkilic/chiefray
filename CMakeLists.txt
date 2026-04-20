@@ -20,3 +20,7 @@ if(CHIEFRAY_ENABLE_TESTS)
 endif()
 
 add_subdirectory(src)
+
+if(CHIEFRAY_ENABLE_PYTHON)
+    add_subdirectory(bindings)
+endif()

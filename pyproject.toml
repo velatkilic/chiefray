@@ -1,0 +1,45 @@
+[build-system]
+requires = ["scikit-build-core>=0.9", "nanobind>=2.0"]
+build-backend = "scikit-build-core.build"
+
+[project]
+name = "chiefray"
+version = "0.1.0"
+description = "Python bindings for the chiefray library"
+readme = "README.md"
+license = { file = "LICENSE" }
+requires-python = ">=3.9"
+dependencies = []
+authors = [
+    { name = "Velat Kilic", email = "bla@bla.com" },
+]
+[project.urls]
+Homepage = "https://github.com/..."
+
+[project.optional-dependencies]
+numpy = ["numpy>=1.24"]
+
+[tool.scikit-build]
+# Protect the configuration against future changes in scikit-build-core
+minimum-version = "build-system.requires"
+cmake.preset = "python-release"
+wheel.packages = []
+install.components = ["python"]
+
+[tool.cibuildwheel]
+build = ["cp39-*", "cp310-*", "cp311-*", "cp312-*"]
+# Necessary to see build output from the actual compilation
+build-verbosity = 1
+
+# Setuptools-style build caching in a local directory
+build-dir = "build/{wheel_tag}"
+
+# Build stable ABI wheels for CPython 3.12+
+wheel.py-api = "cp312"
+
+# Run unittest to ensure that the package was correctly built
+test-command = "python -m unittest discover -s {project}/bindings/tests"
+
+# Needed for full C++17 support
+[tool.cibuildwheel.macos.environment]
+MACOSX_DEPLOYMENT_TARGET = "10.14"

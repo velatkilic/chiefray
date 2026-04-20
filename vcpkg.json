@@ -1,6 +1,7 @@
 {
   "dependencies": [
     "eigen3",
-    "catch2"
+    "catch2",
+    "nanobind"
   ]
 }
