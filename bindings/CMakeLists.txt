@@ -37,5 +37,5 @@ if(CHIEFRAY_ENABLE_MPI)
     target_sources(_chiefray_ext PRIVATE src/mpi/bind_mpi_distributor.cpp)
 endif()
 
-install(TARGETS _chiefray_ext LIBRARY DESTINATION chiefray)
-install(DIRECTORY python/chiefray/ DESTINATION chiefray)
+install(TARGETS _chiefray_ext LIBRARY DESTINATION chiefray COMPONENT python)
+install(DIRECTORY python/chiefray/ DESTINATION chiefray COMPONENT python)
