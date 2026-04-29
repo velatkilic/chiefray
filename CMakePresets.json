@@ -29,6 +29,13 @@
         "CMAKE_BUILD_TYPE": "Release"
       }
     },
+    {
+      "name": "cuda",
+      "hidden": true,
+      "cacheVariables": {
+        "CHIEFRAY_ENABLE_CUDA": "ON"
+      }
+    },
 
     {
       "name": "win-msvc-dev",
@@ -46,6 +53,18 @@
       "displayName": "Windows (MSVC) Release",
       "inherits": ["release"],
       "generator": "Visual Studio 18 2026",
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Windows"
+      }
+    },
+    {
+      "name": "win-msvc-cuda-dev",
+      "displayName": "Windows (MSVC + CUDA) Dev",
+      "description": "CUDA build on Windows. Uses Ninja (not the VS generator) because NVIDIA's CUDA MSBuild integration only supports specific VS versions, while Ninja drives nvcc directly. Must be run from a 'Developer PowerShell for VS' or 'x64 Native Tools' prompt so cl.exe is on PATH. -allow-unsupported-compiler lets nvcc accept newer cl.exe versions that the installed CUDA Toolkit may not officially list.",
+      "inherits": ["dev", "cuda"],
+      "generator": "Ninja",
       "condition": {
         "type": "equals",
         "lhs": "${hostSystemName}",
@@ -79,6 +98,11 @@
         "CMAKE_C_COMPILER": "gcc",
         "CMAKE_CXX_COMPILER": "g++"
       }
+    },
+    {
+      "name": "linux-gcc-cuda-dev",
+      "displayName": "Linux (GCC + CUDA) Dev",
+      "inherits": ["linux-gcc-dev", "cuda"]
     },
     {
       "name": "linux-clang-dev",
@@ -129,6 +153,11 @@
       "configuration": "Release"
     },
     {
+      "name": "win-msvc-cuda-dev",
+      "inherits": ["base-build"],
+      "configurePreset": "win-msvc-cuda-dev"
+    },
+    {
       "name": "linux-gcc-dev",
       "inherits": ["base-build"],
       "configurePreset": "linux-gcc-dev"
@@ -137,6 +166,11 @@
       "name": "linux-gcc-release",
       "inherits": ["base-build"],
       "configurePreset": "linux-gcc-release"
+    },
+    {
+      "name": "linux-gcc-cuda-dev",
+      "inherits": ["base-build"],
+      "configurePreset": "linux-gcc-cuda-dev"
     },
     {
       "name": "linux-clang-dev",
@@ -164,9 +198,19 @@
       "configuration": "Debug"
     },
     {
+      "name": "win-msvc-cuda-dev",
+      "inherits": ["base-test"],
+      "configurePreset": "win-msvc-cuda-dev"
+    },
+    {
       "name": "linux-gcc-dev",
       "inherits": ["base-test"],
       "configurePreset": "linux-gcc-dev"
+    },
+    {
+      "name": "linux-gcc-cuda-dev",
+      "inherits": ["base-test"],
+      "configurePreset": "linux-gcc-cuda-dev"
     },
     {
       "name": "linux-clang-dev",

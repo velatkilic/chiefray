@@ -1,6 +1,10 @@
 {
+  "name": "chiefray",
+  "version-semver": "0.1.0",
+  "description": "Optical modeling library",
   "dependencies": [
     "eigen3",
+    "fftw3",
     "catch2"
   ]
 }

@@ -13,6 +13,7 @@ project(chiefray
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
 
 include(ProjectOptions)
+include(Cuda)
 include(Warnings)
 include(Sanitizers)
 include(StaticAnalysis)

@@ -1,4 +1,5 @@
 find_package(Eigen3 CONFIG REQUIRED)
+find_package(FFTW3 CONFIG REQUIRED)
 
 if(CHIEFRAY_ENABLE_OMP)
     find_package(OpenMP REQUIRED)
@@ -9,9 +10,6 @@ if(CHIEFRAY_ENABLE_MPI)
 endif()
 
 if(CHIEFRAY_ENABLE_CUDA)
-    include(CheckLanguage)
-    check_language(CUDA)
-    enable_language(CUDA)
     find_package(CUDAToolkit REQUIRED)
 endif()
 
